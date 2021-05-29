@@ -9,7 +9,9 @@
   </head>
   <body bgcolor="#111111">
     <h1><font color="#eeeeee">Test 2</font></h1>
-    <script type="text/javascript" charset="utf-8">
+    <script type="module" charset="utf-8">
+      import App from "./AppSupport.js";
+      let app = new App();
       let installPrompt;
       if ("serviceWorker" in navigator) {
         console.log("service Worker is available");
@@ -33,8 +35,12 @@
             alert ("Unable to load that.");
           }
         }
+        function onbtn2click(){
+          app.showAlert("Test");
+        }
       }
     </script>
-    <button onclick="onbtn1click()">install</button>
+   <button onclick="onbtn1click()">install</button>
+   <button onclick="onbtn2click()">show</button>
   </body>
 </html>

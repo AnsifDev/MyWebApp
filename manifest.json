@@ -1,0 +1,17 @@
+{
+    "name" : "MyWebApp",
+    "short_name" : "MyWebApp",
+    "start_url" : "./",
+    "background_color" : "black",
+    "theme_color" : "#333333",
+    "display" : "standalone",
+    "icons" : [{
+        "src" : "https://ansifdev.github.io/MyWeb/img512.png",
+        "sizes" : "512x512",
+        "type" : "image/png"
+    }, {
+        "src" : "https://ansifdev.github.io/MyWeb/img512.png",
+        "sizes" : "64x64",
+        "type" : "image/png"
+    }]
+}

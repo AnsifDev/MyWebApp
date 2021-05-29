@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="./manifest.json">
+    <title>MyWeb2</title>
+  </head>
+  <body bgcolor="#111111">
+    <h1><font color="#eeeeee">Test 2</font></h1>
+    <script type="text/javascript" charset="utf-8">
+      let installPrompt;
+      if ("serviceWorker" in navigator) {
+        console.log("service Worker is available");
+        navigator.serviceWorker.register("./serviceWorker.js").then(function(result){
+          console.log("service Worker registered");
+        }).catch (function (error){
+          console.log("serviceWorker failed to register\n"+error);
+        });
+        function onInstallPromptReceived(event){
+          console.log("install prompt instruction received");
+          event.preventDefault();
+          installPrompt = event;
+        }
+        window.addEventListener("beforeinstallprompt", onInstallPromptReceived);
+        function onbtn1click () {
+          if (installPrompt != null) {
+            console.log("install prompt sent");
+            installPrompt.prompt();
+          } else {
+            console.log("install prompt event is not received");
+            alert ("Unable to load that.");
+          }
+        }
+      }
+    </script>
+    <button onclick="onbtn1click()">install</button>
+  </body>
+</html>

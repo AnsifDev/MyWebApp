@@ -25,6 +25,13 @@
         appId: "1:1061660974460:web:e3dd71f5510823fe2a98f9"
       };
       firebase.initializeApp(firebaseConfig);
+      var database = firebase.database();
+      var data = {
+        "Name": "Ansif"
+        "UID": "1002"
+      }
+      var webReference = database.ref("/forWeb")
+      webReference.set(data);
       let installPrompt;
       let btn1 = document.getElementById("btn1");
       let btn2 = document.getElementById("btn2");

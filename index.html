@@ -12,7 +12,7 @@
     <h1><font color="#eeeeee">Test 3.1</font></h1>
     <button id="btn1">install</button>
     <button id="btn2">Open</button>
-    <button id="btn3">show</button>
+    <button id="btn3">Add</button>
     <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase.js"></script>
     <script>
       var firebaseConfig = {
@@ -30,8 +30,7 @@
         "Name": "Ansif",
         "UID": "1002"
       }
-      var webReference = database.ref("/forWeb")
-      webReference.set(data);
+      var webReference = database.ref("/forWeb");
       let installPrompt;
       let btn1 = document.getElementById("btn1");
       let btn2 = document.getElementById("btn2");
@@ -62,7 +61,7 @@
         window.location.href = "./app/layout/MainActivity.html";
       }
       btn3.onclick = function() {
-        
+        webReference.set(data);
       }
       function onAppInstalled(){
         console.log("app installed");

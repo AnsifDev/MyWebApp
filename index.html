@@ -9,7 +9,7 @@
    
   </head>
   <body bgcolor="#111111">
-    <h1><font color="#eeeeee">Test 3.2</font></h1>
+    <h1><font color="#eeeeee">Test 3.3</font></h1>
     <button id="btn1">install</button>
     <button id="btn2">Open</button>
     <button id="btn3">Add</button>
@@ -26,11 +26,13 @@
       };
       firebase.initializeApp(firebaseConfig);
       var database = firebase.database();
-      var data = {
-        Name: "Ansif",
-        UID: "1002"
-      };
-      var webReference = database.ref("forWeb");
+      function writeUserData(userId, name, email, imageUrl) {
+        firebase.database().ref('users/' + userId).set({
+          username: name,
+          email: email,
+          profile_picture : imageUrl
+        });
+      }
       let installPrompt;
       let btn1 = document.getElementById("btn1");
       let btn2 = document.getElementById("btn2");
@@ -61,7 +63,8 @@
         window.location.href = "./app/layout/MainActivity.html";
       }
       btn3.onclick = function() {
-        webReference.set(data);
+        writeUserData("1002", "Ansif", "ansifmshamsu7025@gmail.com", "none");
+        alert("Sent");
       }
       function onAppInstalled(){
         console.log("app installed");

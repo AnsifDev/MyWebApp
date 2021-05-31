@@ -9,7 +9,7 @@
    
   </head>
   <body bgcolor="#111111">
-    <h1><font color="#eeeeee">Test 3.1</font></h1>
+    <h1><font color="#eeeeee">Test 3.2</font></h1>
     <button id="btn1">install</button>
     <button id="btn2">Open</button>
     <button id="btn3">Add</button>
@@ -27,10 +27,10 @@
       firebase.initializeApp(firebaseConfig);
       var database = firebase.database();
       var data = {
-        "Name": "Ansif",
-        "UID": "1002"
-      }
-      var webReference = database.ref("/forWeb");
+        Name: "Ansif",
+        UID: "1002"
+      };
+      var webReference = database.ref("forWeb");
       let installPrompt;
       let btn1 = document.getElementById("btn1");
       let btn2 = document.getElementById("btn2");

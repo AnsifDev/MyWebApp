@@ -6,13 +6,29 @@
     <meta name="theme-color" content="#000000">
     <link rel="manifest" href="./manifest.json">
     <title>MyWeb2</title>
+   
   </head>
   <body bgcolor="#111111">
     <h1><font color="#eeeeee">Test 2</font></h1>
-    <script type="module" charset="utf-8">
-      import App from "./AppSupport.js";
-      let app = new App();
+    <button id="btn1">install</button>
+    <button id="btn2">Open</button>
+    <button id="btn3">show</button>
+    <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase.js"></script>
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyDzeG4r43RspcmrofftpDVUlmx3c-Rz5BE",
+        authDomain: "tester-b6e12.firebaseapp.com",
+        databaseURL: "https://tester-b6e12.firebaseio.com",
+        projectId: "tester-b6e12",
+        storageBucket: "tester-b6e12.appspot.com",
+        messagingSenderId: "1061660974460",
+        appId: "1:1061660974460:web:e3dd71f5510823fe2a98f9"
+      };
+      firebase.initializeApp(firebaseConfig);
       let installPrompt;
+      let btn1 = document.getElementById("btn1");
+      let btn2 = document.getElementById("btn2");
+      let btn3 = document.getElementById("btn3");
       if ("serviceWorker" in navigator) {
         console.log("service Worker is available");
         navigator.serviceWorker.register("./serviceWorker.js").then(function(result){
@@ -20,27 +36,32 @@
         }).catch (function (error){
           console.log("serviceWorker failed to register\n"+error);
         });
-        function onInstallPromptReceived(event){
-          console.log("install prompt instruction received");
-          event.preventDefault();
-          installPrompt = event;
-        }
-        window.addEventListener("beforeinstallprompt", onInstallPromptReceived);
-        function onbtn1click () {
-          if (installPrompt != null) {
-            console.log("install prompt sent");
-            installPrompt.prompt();
-          } else {
-            console.log("install prompt event is not received");
-            alert ("Unable to load that.");
-          }
-        }
-        function onbtn2click(){
-          app.showAlert("Test");
+      }
+      function onInstallPromptReceived(event){
+        console.log("install prompt instruction received");
+        event.preventDefault();
+        installPrompt = event;
+      }
+      btn1.onclick = function () {
+        if (installPrompt != null) {
+          console.log("install prompt sent");
+          installPrompt.prompt();
+        } else {
+          console.log("install prompt event is not received");
+          alert ("Unable to load that.");
         }
       }
+      btn2.onclick = function () {
+        window.location.href = "./app/layout/MainActivity.html";
+      }
+      btn3.onclick = function() {
+        
+      }
+      function onAppInstalled(){
+        console.log("app installed");
+      }
+      window.addEventListener("appinstalled", onAppInstalled)
+      window.addEventListener("beforeinstallprompt", onInstallPromptReceived);
     </script>
-   <button onclick="onbtn1click()">install</button>
-   <button onclick="onbtn2click()">show</button>
   </body>
 </html>
